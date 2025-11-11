@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض الرسومات الشخصية</title>
+    <style>
+        /* ========== CSS Variables ========== */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #d4af37;
+            --accent: #34495e;
+            --background: #f8f9fa;
+            --text: #2c3e50;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+        }
+
+        /* ========== Reset & Base Styles ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background);
+            min-height: 100vh;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        /* ========== Header Styles ========== */
+        .main-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 40%, rgba(212, 175, 55, 0.1) 100%);
+            pointer-events: none;
+        }
+
+        .main-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .main-header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+            font-weight: 300;
+        }
+
+        .graduation-badge {
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 1rem;
+            display: inline-block;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+        }
+
+        /* ========== Container & Navigation ========== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        .nav-container {
+            background: white;
+            padding: 1rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.1);
+            margin-bottom: 1.5rem;
+            border: 1px solid #e8e8e8;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 62, 80, 0.2);
+        }
+
+        .nav-btn.active {
+            background: var(--secondary);
+            border-color: var(--secondary);
+            color: var(--primary);
+        }
+
+        /* ========== Card & Form Styles ========== */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(44, 62, 80, 0.1);
+            margin-bottom: 1.5rem;
+            border: 1px solid #e8e8e8;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(44, 62, 80, 0.15);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+        }
+
+        .checkbox-group input {
+            width: auto;
+            transform: scale(1.2);
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* ========== Button Styles ========== */
+        .btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 62, 80, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary) 0%, #e6c34e 100%);
+        }
+
+        /* ========== Message Styles ========== */
+        .message {
+            background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+            color: #155724;
+            padding: 1.25rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            text-align: center;
+            border: 2px solid #c3e6cb;
+            font-weight: 500;
+        }
+
+        .error {
+            background: linear-gradient(135deg, #ffebee 0%, #f8d7da 100%);
+            color: #721c24;
+            padding: 1.25rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            text-align: center;
+            border: 2px solid #f5c6cb;
+            font-weight: 500;
+        }
+
+        /* ========== Gallery & Cards ========== */
+        .search-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.1);
+            border: 1px solid #e8e8e8;
+        }
+
+        .search-box form {
+            display: flex;
+            gap: 12px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .art-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(44, 62, 80, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e8e8e8;
+            position: relative;
+        }
+
+        .art-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(44, 62, 80, 0.2);
+        }
+
+        .art-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .art-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .no-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .art-card-content {
+            padding: 1.5rem;
+        }
+
+        .art-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .art-details {
+            color: #555;
+        }
+
+        .art-details p {
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .art-details strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .color-box {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            vertical-align: middle;
+            margin-right: 8px;
+            border: 2px solid #e0e0e0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* ========== Dashboard & Admin Styles ========== */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.1);
+        }
+
+        .admin-table th,
+        .admin-table td {
+            padding: 1.25rem;
+            text-align: right;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .admin-table th {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .admin-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-complete {
+            color: var(--success);
+            font-weight: 600;
+            background: #e8f5e8;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .status-incomplete {
+            color: var(--danger);
+            font-weight: 600;
+            background: #ffebee;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .login-container {
+            max-width: 450px;
+            margin: 2rem auto;
+        }
+
+        /* ========== Status & Info Cards ========== */
+        .drawing-status {
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            display: inline-block;
+            margin: 1rem 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .status-pending {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            color: #856404;
+            border: 2px solid #ffeaa7;
+        }
+
+        .status-completed {
+            background: linear-gradient(135deg, #d1edff 0%, #a8d8ff 100%);
+            color: #004085;
+            border: 2px solid #a8d8ff;
+        }
+
+        .student-info-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-right: 4px solid var(--primary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .artwork-display {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            box-shadow: 0 8px 25px rgba(44, 62, 80, 0.1);
+            border: 2px solid #e8e8e8;
+        }
+
+        .artwork-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(45deg, #f5f5f5 25%, transparent 25%), 
+                        linear-gradient(-45deg, #f5f5f5 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #f5f5f5 75%), 
+                        linear-gradient(-45deg, transparent 75%, #f5f5f5 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            border: 2px dashed #bdc3c7;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .artwork-placeholder:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .completed-drawing {
+            border: 3px solid var(--secondary);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .completed-drawing .artwork-placeholder {
+            border-color: var(--secondary);
+            color: var(--secondary);
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+        }
+
+        /* ========== Welcome Steps ========== */
+        .welcome-steps {
+            display: flex;
+            justify-content: space-around;
+            margin: 3rem 0;
+            text-align: center;
+            gap: 1.5rem;
+        }
+
+        .step {
+            flex: 1;
+            padding: 2rem 1.5rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(44, 62, 80, 0.1);
+            border: 2px solid #e8e8e8;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(44, 62, 80, 0.15);
+            border-color: var(--primary);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-weight: bold;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+        }
+
+        /* ========== Stats & Admin Panel ========== */
+        .admin-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e8e8e8;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ========== Responsive Design ========== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-box form {
+                flex-direction: column;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .main-header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .art-card img {
+                height: 200px;
+            }
+            
+            .admin-table {
+                font-size: 0.9rem;
+            }
+            
+            .admin-table th,
+            .admin-table td {
+                padding: 0.75rem 0.5rem;
+            }
+            
+            .welcome-steps {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .step {
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0.75rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .main-header {
+                padding: 1.5rem 1rem;
+            }
+            
+            .main-header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .btn {
+                padding: 0.875rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* ========== View Management ========== */
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <h1>🎨 معرض الرسومات الشخصية</h1>
+        <div class="subtitle">مشروع تخرجي - كلية التصاميم والفنون</div>
+        <div class="graduation-badge">مشروع تخرج</div>
+    </header>
+
+    <div class="container">
+        <!-- Messages Container -->
+        <div id="messageContainer"></div>
+
+        <!-- Navigation -->
+        <div class="nav-container">
+            <div class="navigation">
+                <button class="nav-btn active" onclick="showView('home')">الرئيسية</button>
+                <button class="nav-btn" onclick="showView('register')">إنشاء حساب</button>
+                <button class="nav-btn" onclick="showView('gallery')">المعرض</button>
+                <button class="nav-btn" onclick="showView('admin_login')">دخول الإدارة</button>
+            </div>
+        </div>
+
+        <!-- Views -->
+        <div id="home" class="view active">
+            <div class="card">
+                <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem; font-size: 2rem;">
+                    أهلاً وسهلاً في معرض الرسومات الشخصية! 🎨
+                </h2>
+                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem; line-height: 1.8;">
+                    هذا الموقع هو جزء من مشروع تخرجي في كلية التصاميم والفنون. 
+                    فكرتي هي إنشاء رسومات شخصية للصديقات بناءً على المعلومات اللي يقدمنها. 
+                    كل وحدة تقدر تسجل وتحط المعلومات اللي تساعدني أرسمها بأسلوبها المفضل!
+                </p>
+                
+                <div class="welcome-steps">
+                    <div class="step">
+                        <div class="step-number">١</div>
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">سجلي معلوماتك</h3>
+                        <p>أنشئي حساب جديد واختاري إذا كنتِ تبياني أرسم لكِ ولا لا</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">٢</div>
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">اكتبي المواصفات</h3>
+                        <p>إذا قررتي إنك تبيين رسمة، حطي كل المعلومات اللي تساعدني</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">٣</div>
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">استلمي الرسمة</h3>
+                        <p>برسلك رسالة على الجوال لما أكمل رسمتك وتقدرين تشوفينها في المعرض</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="btn" onclick="showView('register')" style="font-size: 1.3rem; padding: 1.25rem 3rem;">يلا نبدأ! 🚀</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register View -->
+        <div id="register" class="view">
+            <div class="card login-container">
+                <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">أنشئي حسابك</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 2rem;">
+                    سجلي معلوماتك الأساسية عشان نبدأ. إذا كنتِ تبياني أرسم لكِ، راح ندخلك على صفحة معلومات الرسمة مباشرة!
+                </p>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="name">اسمك الكريم:</label>
+                        <input type="text" id="name" name="name" required placeholder="اكتبي اسمك هنا...">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">رقم جوالك:</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="عشان نرسل لكِ إشعار لما نخلص الرسمة">
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="wants_drawing" name="wants_drawing" value="1" checked>
+                            <label for="wants_drawing">أبي أطلب رسمة شخصية! 🎨</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">أكمل التسجيل</button>
+                </form>
+                <p style="text-align: center; margin-top: 2rem;">
+                    <a href="#" onclick="showView('gallery')" style="color: var(--primary); text-decoration: none; font-weight: 600;">
+                        أو شوفي المعرض أول 👀
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Drawing Info View -->
+        <div id="drawing_info" class="view">
+            <div class="card">
+                <h2 style="text-align: center; color: var(--primary); margin-bottom: 1.5rem;" id="drawingTitle">
+                    ياهلا! 🌟
+                </h2>
+                <p style="text-align: center; margin-bottom: 2rem; color: #666; font-size: 1.1rem;">
+                    الحين حطينا المعلومات اللي راح تساعدني أرسملك رسمة تعبر عن شخصيتك!
+                </p>
+                
+                <form id="drawingForm" enctype="multipart/form-data">
+                    <input type="hidden" id="student_id" name="student_id">
+                    
+                    <div class="dashboard-grid">
+                        <div>
+                            <h3 style="color: var(--primary); margin-bottom: 1.5rem; border-right: 4px solid var(--secondary); padding-right: 1rem;">معلوماتك الشخصية</h3>
+                            
+                            <div class="form-group">
+                                <label>لون شعرك:</label>
+                                <input type="text" name="hair_color" required placeholder="مثلاً: أسود، بني، أشقر، أصهب...">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>لون عيونك:</label>
+                                <input type="text" name="eye_color" required placeholder="مثلاً: بني، أسود، أخضر، أزرق...">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>لونك المفضل:</label>
+                                <input type="color" name="favorite_color" value="#2c3e50" required style="height: 60px; border-radius: 10px;">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>لون بشرتك:</label>
+                                <input type="text" name="skin_tone" required placeholder="مثلاً: فاتح، قمحي، زيتوني، غامق...">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>صورتك (إذا تبين):</label>
+                                <input type="file" name="photo" accept="image/*">
+                                <small style="color: #666; display: block; margin-top: 0.5rem;">ما يلزم، بس إذا حطيته بيكون أحلى وأدق!</small>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 style="color: var(--primary); margin-bottom: 1.5rem; border-right: 4px solid var(--secondary); padding-right: 1rem;">تفاصيل الرسمة</h3>
+                            
+                            <div class="form-group">
+                                <label>شكل الشعر اللي تبينه:</label>
+                                <textarea name="hair_style" rows="3" required placeholder="مثلاً: طويل ومموج، قصير ومستقيم، كيرلي، ضفاير..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>اللبس اللي تحبينه:</label>
+                                <textarea name="clothing" rows="3" required placeholder="مثلاً: فستان، جينس وتيشيرت، عباية، لبس تقليدي..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>أي إضافات أو أفكار ثانية:</label>
+                                <textarea name="additional_notes" rows="3" placeholder="إذا عندك أي أفكار خاصة أو تفاصيل إضافية تبينها في الرسمة..."></textarea>
+                            </div>
+                            
+                            <div style="background: #e8f4f8; padding: 1.5rem; border-radius: 12px; margin-top: 2rem;">
+                                <h4 style="color: var(--accent); margin-bottom: 0.5rem;">💡 نصيحة:</h4>
+                                <p style="color: #2c3e50; margin: 0; line-height: 1.6;">
+                                    كل ما كانت المعلومات أدق، بتكون الرسمة أقرب لشخصيتك الحقيقية!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 2rem; font-size: 1.2rem;">
+                        حفظ المعلومات وطلب الرسمة 🎨
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Success View -->
+        <div id="success" class="view">
+            <div class="card" style="text-align: center;">
+                <div style="font-size: 5rem; margin-bottom: 1.5rem;">🎉</div>
+                <h2 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 2rem;">ما شاء الله! تم بنجاح</h2>
+                <p style="font-size: 1.3rem; margin-bottom: 1.5rem; line-height: 1.8;" id="successMessage">
+                    تم حفظ معلوماتك وطلب الرسمة بنجاح! 
+                </p>
+                <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem; line-height: 1.7;">
+                    راح أبدأ بالرسمة على طول وأبذل كل جهدي عشان تطلع زي ما تتمنين. 
+                    أول ما أنتهي راح أرسل لكِ رسالة على الجوال وتقدرين تشوفينها في المعرض!
+                </p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+                    <button class="btn" onclick="showView('gallery')">شوفي المعرض 🖼️</button>
+                    <button class="btn btn-secondary" onclick="showView('home')">الرئيسية 🏠</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Login View -->
+        <div id="admin_login" class="view">
+            <div class="card login-container">
+                <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">دخول الإدارة</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 2rem;">
+                    هذي الصفحة خاصة بي (صاحبة المشروع) عشان أدار الطلبات والرسومات
+                </p>
+                <form id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="admin_username">اسم المستخدم:</label>
+                        <input type="text" id="admin_username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin_password">كلمة المرور:</label>
+                        <input type="password" id="admin_password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">دخول الإدارة</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Admin View -->
+        <div id="admin" class="view">
+            <div class="card">
+                <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">لوحة الإدارة - مشروع التخرج</h2>
+                
+                <div class="stats-grid" id="statsGrid">
+                    <!-- Stats will be populated by JavaScript -->
+                </div>
+                
+                <div class="card">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem;">قائمة الطالبات والطلبات</h3>
+                    <div style="overflow-x: auto;">
+                        <table class="admin-table" id="adminTable">
+                            <thead>
+                                <tr>
+                                    <th>الاسم</th>
+                                    <th>رقم الجوال</th>
+                                    <th>طلب رسمة</th>
+                                    <th>المعلومات</th>
+                                    <th>حالة الرسمة</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminTableBody">
+                                <!-- Data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Student Details View -->
+        <div id="student_details" class="view">
+            <div class="card">
+                <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem;" id="studentDetailsTitle">
+                    تفاصيل الطالبة
+                </h2>
+                
+                <div class="dashboard-grid">
+                    <div>
+                        <h3 style="color: var(--primary); margin-bottom: 1.5rem; border-right: 4px solid var(--secondary); padding-right: 1rem;">المعلومات الأساسية</h3>
+                        <div id="studentBasicInfo">
+                            <!-- Basic info will be populated by JavaScript -->
+                        </div>
+                        <div id="studentDrawingInfo">
+                            <!-- Drawing info will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 style="color: var(--primary); margin-bottom: 1.5rem; border-right: 4px solid var(--secondary); padding-right: 1rem;">إدارة الرسمة</h3>
+                        
+                        <form id="drawingStatusForm">
+                            <input type="hidden" id="edit_student_id" name="student_id">
+                            
+                            <div class="form-group">
+                                <label>حالة الرسمة:</label>
+                                <select name="drawing_completed" required style="padding: 1rem; font-size: 1rem;">
+                                    <option value="0">🟡 قيد العمل</option>
+                                    <option value="1">✅ مكتملة</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>رفع ملف الرسمة النهائية:</label>
+                                <input type="file" name="drawing_file" accept="image/*" style="padding: 1rem; border: 2px dashed #bdc3c7;">
+                                <div id="currentDrawingFile"></div>
+                            </div>
+                            
+                            <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">حفظ التغييرات</button>
+                        </form>
+                        
+                        <div id="drawingStatusMessage" class="hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery View -->
+        <div id="gallery" class="view">
+            <div class="card">
+                <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">🎨 معرض الرسومات</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 2rem; font-size: 1.1rem;">
+                    هذا المعرض يضم كل الرسومات الشخصية اللي طلبتها الصديقات. كل رسمة بتكون مبنية على المعلومات الشخصية لكل وحدة!
+                </p>
+                
+                <div class="search-box">
+                    <form id="searchForm">
+                        <input type="text" id="searchInput" placeholder="ابحثي باسم الصديقة...">
+                        <button type="submit" class="btn">بحث</button>
+                    </form>
+                </div>
+
+                <div class="gallery" id="galleryContainer">
+                    <!-- Gallery items will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== Data Management ==========
+        class DataManager {
+            constructor() {
+                this.students = JSON.parse(localStorage.getItem('artGalleryStudents')) || [];
+                this.nextId = parseInt(localStorage.getItem('artGalleryNextId')) || 1;
+            }
+
+            saveStudents() {
+                localStorage.setItem('artGalleryStudents', JSON.stringify(this.students));
+                localStorage.setItem('artGalleryNextId', this.nextId.toString());
+            }
+
+            addStudent(studentData) {
+                const student = {
+                    id: this.nextId++,
+                    ...studentData,
+                    created_at: new Date().toISOString(),
+                    info_completed: false,
+                    drawing_completed: false
+                };
+                this.students.push(student);
+                this.saveStudents();
+                return student.id;
+            }
+
+            updateStudent(studentId, updates) {
+                const student = this.students.find(s => s.id === studentId);
+                if (student) {
+                    Object.assign(student, updates);
+                    this.saveStudents();
+                    return true;
+                }
+                return false;
+            }
+
+            getStudent(studentId) {
+                return this.students.find(s => s.id === studentId);
+            }
+
+            getAllStudents() {
+                return this.students;
+            }
+
+            getStudentsWithDrawings() {
+                return this.students.filter(s => s.wants_drawing);
+            }
+
+            searchStudents(query) {
+                return this.getStudentsWithDrawings().filter(student =>
+                    student.name.toLowerCase().includes(query.toLowerCase())
+                );
+            }
+        }
+
+        // ========== App State Management ==========
+        class AppState {
+            constructor() {
+                this.dataManager = new DataManager();
+                this.currentView = 'home';
+                this.currentStudent = null;
+                this.isAdmin = false;
+            }
+
+            showMessage(message, type = 'success') {
+                const messageContainer = document.getElementById('messageContainer');
+                messageContainer.innerHTML = `
+                    <div class="${type === 'error' ? 'error' : 'message'}">
+                        ${message}
+                    </div>
+                `;
+                setTimeout(() => {
+                    messageContainer.innerHTML = '';
+                }, 5000);
+            }
+
+            showView(viewName, params = {}) {
+                // Hide all views
+                document.querySelectorAll('.view').forEach(view => {
+                    view.classList.remove('active');
+                });
+
+                // Update navigation
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+
+                // Show target view
+                document.getElementById(viewName).classList.add('active');
+
+                // Handle view-specific logic
+                this.handleViewChange(viewName, params);
+            }
+
+            handleViewChange(viewName, params) {
+                switch (viewName) {
+                    case 'home':
+                        document.querySelector('.nav-btn[onclick="showView(\'home\')"]').classList.add('active');
+                        break;
+                    case 'register':
+                        document.querySelector('.nav-btn[onclick="showView(\'register\')"]').classList.add('active');
+                        break;
+                    case 'gallery':
+                        document.querySelector('.nav-btn[onclick="showView(\'gallery\')"]').classList.add('active');
+                        this.renderGallery();
+                        break;
+                    case 'admin':
+                        if (!this.isAdmin) {
+                            this.showView('admin_login');
+                            return;
+                        }
+                        document.querySelector('.nav-btn[onclick="showView(\'admin_login\')"]').classList.add('active');
+                        this.renderAdminPanel();
+                        break;
+                    case 'drawing_info':
+                        if (params.studentId) {
+                            this.currentStudent = this.dataManager.getStudent(params.studentId);
+                            if (this.currentStudent) {
+                                document.getElementById('drawingTitle').textContent = 
+                                    `ياهلا ${this.currentStudent.name}! 🌟`;
+                                document.getElementById('student_id').value = this.currentStudent.id;
+                            }
+                        }
+                        break;
+                    case 'success':
+                        if (this.currentStudent) {
+                            document.getElementById('successMessage').innerHTML = 
+                                `عزيزتي <strong>${this.currentStudent.name}</strong>، 
+                                تم حفظ معلوماتك وطلب الرسمة بنجاح!`;
+                        }
+                        break;
+                    case 'student_details':
+                        if (params.studentId && this.isAdmin) {
+                            this.renderStudentDetails(params.studentId);
+                        }
+                        break;
+                }
+            }
+
+            renderGallery(searchQuery = '') {
+                const galleryContainer = document.getElementById('galleryContainer');
+                let students = this.dataManager.getStudentsWithDrawings();
+
+                if (searchQuery) {
+                    students = this.dataManager.searchStudents(searchQuery);
+                }
+
+                if (students.length === 0) {
+                    galleryContainer.innerHTML = `
+                        <div class="no-data" style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--accent); background: white; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">😊</div>
+                            <h3 style="color: var(--primary); margin-bottom: 1rem;">ما في رسومات لعرضها الحين</h3>
+                            <p style="color: #666; margin-bottom: 2rem;">${searchQuery ? 'ما حصلنا نتائج للبحث' : 'يمكنكِ تكوني أول وحدة تطلبين رسمة!'}</p>
+                            <button class="btn" onclick="appState.showView('register')">اطلبي رسمة!</button>
+                        </div>
+                    `;
+                    return;
+                }
+
+                galleryContainer.innerHTML = students.map(student => `
+                    <div class="art-card ${student.drawing_completed ? 'completed-drawing' : ''}">
+                        ${student.photo_path ? 
+                            `<img src="${student.photo_path}" alt="${student.name}">` :
+                            `<div class="no-image">🖼️ صورة ${student.name}</div>`
+                        }
+                        
+                        <div class="art-card-content">
+                            <h3>${student.name}</h3>
+                            
+                            <div class="drawing-status ${student.drawing_completed ? 'status-completed' : 'status-pending'}">
+                                ${student.drawing_completed ? '✅ الرسمة مكتملة' : '🟡 جاري العمل على الرسمة'}
+                            </div>
+                            
+                            ${student.info_completed ? `
+                                <div class="art-details">
+                                    <p><strong>لون الشعر:</strong> ${student.hair_color}</p>
+                                    <p><strong>لون العيون:</strong> ${student.eye_color}</p>
+                                    <p><strong>اللون المفضل:</strong> 
+                                        <span class="color-box" style="background-color: ${student.favorite_color}"></span>
+                                    </p>
+                                </div>
+                            ` : ''}
+                            
+                            ${student.drawing_completed && student.drawing_path ? `
+                                <div style="margin-top: 1.5rem;">
+                                    <a href="${student.drawing_path}" target="_blank" class="btn" style="width: 100%;">👀 شوفي الرسمة النهائية</a>
+                                </div>
+                            ` : `
+                                <div class="artwork-placeholder">
+                                    ${student.drawing_completed ? 'الرسمة جاهزة! 🎉' : 'جاري إنشاء الرسمة... ⏳'}
+                                </div>
+                            `}
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            renderAdminPanel() {
+                const students = this.dataManager.getAllStudents();
+                
+                // Render stats
+                const statsGrid = document.getElementById('statsGrid');
+                const totalStudents = students.length;
+                const drawingRequests = students.filter(s => s.wants_drawing).length;
+                const completedInfo = students.filter(s => s.info_completed).length;
+                const completedDrawings = students.filter(s => s.drawing_completed).length;
+
+                statsGrid.innerHTML = `
+                    <div class="stat-card">
+                        <div class="stat-number">${totalStudents}</div>
+                        <div class="stat-label">إجمالي المسجلات</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${drawingRequests}</div>
+                        <div class="stat-label">طلبات الرسم</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${completedInfo}</div>
+                        <div class="stat-label">مكتملة المعلومات</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${completedDrawings}</div>
+                        <div class="stat-label">الرسومات المكتملة</div>
+                    </div>
+                `;
+
+                // Render table
+                const tableBody = document.getElementById('adminTableBody');
+                tableBody.innerHTML = students.map(student => `
+                    <tr>
+                        <td>${student.name}</td>
+                        <td>${student.phone || 'غير محدد'}</td>
+                        <td>${student.wants_drawing ? '✅ نعم' : '❌ لا'}</td>
+                        <td>
+                            <span class="${student.info_completed ? 'status-complete' : 'status-incomplete'}">
+                                ${student.info_completed ? 'مكتملة' : 'غير مكتملة'}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="${student.drawing_completed ? 'status-complete' : 'status-incomplete'}">
+                                ${student.drawing_completed ? 'مكتملة' : 'قيد الانتظار'}
+                            </span>
+                        </td>
+                        <td>
+                            <button class="btn" onclick="appState.showView('student_details', { studentId: ${student.id} })" style="padding: 0.5rem 1rem; font-size: 0.9rem;">عرض/تعديل</button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+
+            renderStudentDetails(studentId) {
+                const student = this.dataManager.getStudent(studentId);
+                if (!student) return;
+
+                document.getElementById('studentDetailsTitle').textContent = 
+                    `تفاصيل الطالبة: ${student.name}`;
+                document.getElementById('edit_student_id').value = student.id;
+
+                // Render basic info
+                const basicInfo = document.getElementById('studentBasicInfo');
+                basicInfo.innerHTML = `
+                    <div class="student-info-card">
+                        <p><strong>📞 رقم الجوال:</strong> ${student.phone || 'غير محدد'}</p>
+                        <p><strong>🎨 طلب رسمة:</strong> ${student.wants_drawing ? '✅ نعم' : '❌ لا'}</p>
+                        <p><strong>📅 تاريخ التسجيل:</strong> ${new Date(student.created_at).toLocaleDateString('ar-SA')}</p>
+                    </div>
+                `;
+
+                // Render drawing info if available
+                const drawingInfo = document.getElementById('studentDrawingInfo');
+                if (student.info_completed) {
+                    drawingInfo.innerHTML = `
+                        <div class="student-info-card">
+                            <h4 style="color: var(--accent); margin-bottom: 1rem;">معلومات الرسمة:</h4>
+                            <p><strong>👱‍♀️ لون الشعر:</strong> ${student.hair_color}</p>
+                            <p><strong>👁️ لون العيون:</strong> ${student.eye_color}</p>
+                            <p><strong>🎨 اللون المفضل:</strong> 
+                                <span class="color-box" style="background-color: ${student.favorite_color}"></span>
+                                ${student.favorite_color}
+                            </p>
+                            <p><strong>🌟 لون البشرة:</strong> ${student.skin_tone}</p>
+                            <p><strong>💇 تسريحة الشعر:</strong> ${student.hair_style}</p>
+                            <p><strong>👗 اللباس:</strong> ${student.clothing}</p>
+                            ${student.additional_notes ? `
+                                <p><strong>💬 ملاحظات إضافية:</strong> ${student.additional_notes}</p>
+                            ` : ''}
+                        </div>
+                    `;
+                } else {
+                    drawingInfo.innerHTML = '';
+                }
+
+                // Set current drawing status
+                const statusSelect = document.querySelector('#drawingStatusForm select[name="drawing_completed"]');
+                statusSelect.value = student.drawing_completed ? '1' : '0';
+
+                // Show current drawing file if exists
+                const currentFileDiv = document.getElementById('currentDrawingFile');
+                if (student.drawing_path) {
+                    currentFileDiv.innerHTML = `
+                        <p style="color: #27ae60; margin-top: 0.5rem; font-weight: 600;">
+                            ✅ تم رفع رسمة مسبقاً: 
+                            <a href="${student.drawing_path}" target="_blank" style="color: var(--primary);">عرض الرسمة</a>
+                        </p>
+                    `;
+                } else {
+                    currentFileDiv.innerHTML = '';
+                }
+
+                // Show status message if completed
+                const statusMessage = document.getElementById('drawingStatusMessage');
+                if (student.drawing_completed) {
+                    statusMessage.innerHTML = '<div class="message" style="margin-top: 1.5rem;">✅ تم إرسال إشعار للطالبة باكتمال الرسمة</div>';
+                    statusMessage.classList.remove('hidden');
+                } else {
+                    statusMessage.classList.add('hidden');
+                }
+            }
+        }
+
+        // ========== File Handling ==========
+        class FileManager {
+            static readFileAsDataURL(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            static async handleImageUpload(fileInput) {
+                if (!fileInput.files[0]) return null;
+
+                const file = fileInput.files[0];
+                
+                // Validate file type
+                const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+                if (!validTypes.includes(file.type)) {
+                    throw new Error('نوع الملف غير مدعوم. يرجى رفع صورة (JPEG, PNG, GIF, WebP)');
+                }
+
+                // Validate file size (5MB max)
+                const maxSize = 5 * 1024 * 1024;
+                if (file.size > maxSize) {
+                    throw new Error('حجم الملف كبير جداً. الحد الأقصى 5MB');
+                }
+
+                return await this.readFileAsDataURL(file);
+            }
+        }
+
+        // ========== Initialize App ==========
+        const appState = new AppState();
+
+        // Global function for view navigation
+        function showView(viewName, params = {}) {
+            appState.showView(viewName, params);
+        }
+
+        // ========== Event Listeners ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // Register Form
+            document.getElementById('registerForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                const studentData = {
+                    name: formData.get('name'),
+                    phone: formData.get('phone'),
+                    wants_drawing: formData.get('wants_drawing') === '1'
+                };
+
+                try {
+                    const studentId = appState.dataManager.addStudent(studentData);
+                    
+                    if (studentData.wants_drawing) {
+                        appState.currentStudent = appState.dataManager.getStudent(studentId);
+                        appState.showView('drawing_info', { studentId });
+                    } else {
+                        appState.showMessage('تم التسجيل بنجاح! يمكنك متابعة المعرض');
+                        appState.showView('gallery');
+                    }
+                } catch (error) {
+                    appState.showMessage(error.message, 'error');
+                }
+            });
+
+            // Drawing Info Form
+            document.getElementById('drawingForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                const studentId = parseInt(formData.get('student_id'));
+                
+                try {
+                    const updates = {
+                        hair_color: formData.get('hair_color'),
+                        eye_color: formData.get('eye_color'),
+                        favorite_color: formData.get('favorite_color'),
+                        skin_tone: formData.get('skin_tone'),
+                        hair_style: formData.get('hair_style'),
+                        clothing: formData.get('clothing'),
+                        additional_notes: formData.get('additional_notes'),
+                        info_completed: true
+                    };
+
+                    // Handle photo upload
+                    const photoFile = formData.get('photo');
+                    if (photoFile && photoFile.size > 0) {
+                        updates.photo_path = await FileManager.handleImageUpload(document.querySelector('input[name="photo"]'));
+                    }
+
+                    if (appState.dataManager.updateStudent(studentId, updates)) {
+                        appState.currentStudent = appState.dataManager.getStudent(studentId);
+                        appState.showView('success');
+                    } else {
+                        throw new Error('حدث خطأ في حفظ المعلومات');
+                    }
+                } catch (error) {
+                    appState.showMessage(error.message, 'error');
+                }
+            });
+
+            // Admin Login Form
+            document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                const username = formData.get('username');
+                const password = formData.get('password');
+
+                if (username === 'admin' && password === 'admin123') {
+                    appState.isAdmin = true;
+                    appState.showView('admin');
+                    appState.showMessage('مرحباً بك في لوحة الإدارة!');
+                } else {
+                    appState.showMessage('اسم المستخدم أو كلمة المرور غير صحيحة', 'error');
+                }
+            });
+
+            // Drawing Status Form
+            document.getElementById('drawingStatusForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                const studentId = parseInt(formData.get('student_id'));
+                const drawingCompleted = formData.get('drawing_completed') === '1';
+
+                try {
+                    const updates = {
+                        drawing_completed: drawingCompleted
+                    };
+
+                    // Handle drawing file upload
+                    const drawingFile = formData.get('drawing_file');
+                    if (drawingFile && drawingFile.size > 0) {
+                        updates.drawing_path = await FileManager.handleImageUpload(document.querySelector('input[name="drawing_file"]'));
+                    }
+
+                    if (appState.dataManager.updateStudent(studentId, updates)) {
+                        appState.showMessage('تم تحديث حالة الرسمة بنجاح');
+                        appState.renderStudentDetails(studentId);
+                    } else {
+                        throw new Error('حدث خطأ في تحديث الحالة');
+                    }
+                } catch (error) {
+                    appState.showMessage(error.message, 'error');
+                }
+            });
+
+            // Search Form
+            document.getElementById('searchForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const searchQuery = document.getElementById('searchInput').value;
+                appState.renderGallery(searchQuery);
+            });
+
+            // File input validation
+            document.querySelectorAll('input[type="file"]').forEach(input => {
+                input.addEventListener('change', function(e) {
+                    const file = this.files[0];
+                    if (file) {
+                        const maxSize = 5 * 1024 * 1024;
+                        const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+                        
+                        if (!validTypes.includes(file.type)) {
+                            appState.showMessage('نوع الملف غير مدعوم. يرجى رفع صورة (JPEG, PNG, GIF, WebP)', 'error');
+                            this.value = '';
+                        } else if (file.size > maxSize) {
+                            appState.showMessage('حجم الملف كبير جداً. الحد الأقصى 5MB', 'error');
+                            this.value = '';
+                        }
+                    }
+                });
+            });
+
+            console.log('موقع معرض الرسومات جاهز! 🎨');
+        });
+    </script>
+</body>
+</html>
